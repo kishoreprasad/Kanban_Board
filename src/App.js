@@ -36,37 +36,6 @@ class App extends Component {
     })
   }
 
-  completeCard = () => {
-    this.state.eventBus.publish({
-      type: 'ADD_CARD',
-      laneId: 'COMPLETED',
-      card: {
-        id: 'Milk',
-        title: 'Buy Milk',
-        label: '15 mins',
-        description: 'Use Headspace app',
-      },
-    })
-    this.state.eventBus.publish({
-      type: 'REMOVE_CARD',
-      laneId: 'PLANNED',
-      cardId: 'Milk',
-    })
-  }
-
-  addCard = () => {
-    this.state.eventBus.publish({
-      type: 'ADD_CARD',
-      laneId: 'BLOCKED',
-      card: {
-        id: 'Ec2Error',
-        title: 'EC2 Instance Down',
-        label: '30 mins',
-        description: 'Main EC2 instance down',
-      },
-    })
-  }
-
   shouldReceiveNewData = (nextData) => {
     console.log('New card has been added')
     console.log(nextData)
@@ -84,12 +53,6 @@ class App extends Component {
           <h3>React Trello Demo</h3>
         </div>
         <div className="App-intro">
-          <button onClick={this.completeCard} style={{ margin: 5 }}>
-            Complete Buy Milk
-          </button>
-          <button onClick={this.addCard} style={{ margin: 5 }}>
-            Add Blocked
-          </button>
           <Board
             editable
             onCardAdd={this.handleCardAdd}
