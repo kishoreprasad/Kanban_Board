@@ -46,22 +46,46 @@ class App extends Component {
     console.dir(card)
   }
 
+  handleaddlane = (laneId)=>{
+    console.log(laneId);
+  }
+  handleCardClick=(props)=>{
+  }
+  handedelete=(props)=>{
+
+    alert(props)
+    //delete data[props];
+    //alert(data.lanes.id);
+  }
+  handleheader=()=>{}
   render() {
     return (
       <div className="App">
         <div className="App-header">
-          <h3>React Trello Demo</h3>
+          <h3>MX Kanban</h3>
         </div>
         <div className="App-intro">
           <Board
+            // components={{LaneHeader: this.handleheader}}
+            canAddLanes
+            collapsibleLanes
             editable
             onCardAdd={this.handleCardAdd}
             data={this.state.boardData}
             draggable
+            onCardClick={this.handleCardClick}
             onDataChange={this.shouldReceiveNewData}
+            onLaneAdd={this.handleaddlane}
             eventBusHandle={this.setEventBus}
             handleDragStart={handleDragStart}
             handleDragEnd={handleDragEnd}
+            onCardDelete={this.handedelete}
+            editLaneTitle
+            style={{
+              fontFamily: 'Verdana',
+              padding : '30px 20px',
+              backgroundColor: 'blanchedalmond'
+            }}
           />
         </div>
       </div>
