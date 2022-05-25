@@ -6,12 +6,20 @@
     "create-react-app": "^5.0.1",
     "lodash": "4.17.15",
     "react": "^17.0.1",
+<<<<<<< HEAD
     "react-bootstrap": "^2.4.0",
     "react-dom": "^17.0.1",
     "react-trello": "2.2.10",
     "redux-actions": "2.6.5",
+=======
+    "react-dom": "^17.0.1",
+    "react-trello": "2.2.10",
+    "redux-actions": "2.6.5",
+    "redux-firestore": "^1.0.0",
+>>>>>>> 2b472772283851b181703d218ae6ceaef8b2c5f7
     "redux-logger": "3.0.6",
-    "styled-components": "5.0.1"
+    "styled-components": "5.0.1",
+    "react-router-dom": "^5.0.1"
   },
   "devDependencies": {
     "react-scripts": "3.4.1"

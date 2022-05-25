@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import './App.css'
 import React, { Component,useState } from 'react'
 import Board from 'react-trello'
@@ -128,9 +129,31 @@ class App extends Component {
             }}
           />
         </div>
-      </div>
-    )
-  }
-}
+=======
+import React from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-export default App
+import LoginPage from "./components/pages/LoginPage";
+import RegisterPage from "./components/pages/RegisterPage";
+import ForgetPasswordPage from "./components/pages/ForgetPasswordPage";
+import HomePage from "./components/pages/HomePage";
+import _Board from "./components/Board/Board";
+import { Redirect } from "react-router-dom";
+
+export default function App() {
+  return (
+    <Router>
+      <div>
+        <Switch>
+          <Route exact path="/" component={LoginPage} />
+          <Route exact path="/register" component={RegisterPage} />
+          <Route exact path="/forget-password" component={ForgetPasswordPage} />
+          <Route exact path="/home" component={HomePage} />
+          <Route exact path="/board" component={_Board} />
+          <Redirect from="/" to="/" />
+        </Switch>
+>>>>>>> 2b472772283851b181703d218ae6ceaef8b2c5f7
+      </div>
+    </Router>
+  );
+}
