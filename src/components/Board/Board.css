@@ -1,5 +1,10 @@
 .App {
 }
+.icon{
+  color: azure;
+  size: 4px;
+  float: right;
+}
 
 .App-header {
   background-color: #222;
