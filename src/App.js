@@ -1,10 +1,10 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-import LoginPage from "./components/pages/LoginPage";
-import RegisterPage from "./components/pages/RegisterPage";
-import ForgetPasswordPage from "./components/pages/ForgetPasswordPage";
-import HomePage from "./components/pages/HomePage";
+import LoginPage from "./components/auth/LoginPage";
+import RegisterPage from "./components/auth/RegisterPage";
+import ForgetPasswordPage from "./components/auth/ForgetPasswordPage";
+import HomePage from "./components/HomePage";
 import _Board from "./components/Board/Board";
 import { Redirect } from "react-router-dom";
 

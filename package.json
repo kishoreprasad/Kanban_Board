@@ -11,13 +11,20 @@
     "react-bootstrap": "^2.4.0",
     "react-dom": "^17.0.1",
     "react-icons": "^4.3.1",
+    "react-redux": "^8.0.2",
+    "react-redux-firebase": "^3.11.0",
     "react-router-dom": "^5.0.1",
     "react-trello": "2.2.10",
     "redux-actions": "2.6.5",
     "redux-firestore": "^1.0.0",
     "redux-logger": "3.0.6",
+<<<<<<< HEAD
     "styled-components": "5.0.1",
     "unsplash-react": "^0.3.0"
+=======
+    "redux-thunk": "^2.4.1",
+    "styled-components": "5.0.1"
+>>>>>>> a13ef43c554510affec876c069d59ef17a464433
   },
   "devDependencies": {
     "react-scripts": "^5.0.1"
