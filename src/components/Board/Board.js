@@ -2,7 +2,6 @@ import "./Board.css";
 import { FaPhotoVideo, FaInfoCircle } from 'react-icons/fa';
 import React, { Component } from "react";
 import Board from "react-trello";
-
 const data = require("../../data.json");
 
 const handleDragStart = (cardId, laneId) => {
@@ -60,7 +59,7 @@ class _Board extends Component {
     return (
         <div className="App">
           <div className="App-header">
-            <h3>MX Kanban<div className="icon"><pre><FaPhotoVideo />    <FaInfoCircle />   </pre></div></h3>            
+            <h3>MX Kanban<div id="icon"><pre><FaPhotoVideo />    <FaInfoCircle />   </pre></div></h3>            
           </div>
           <div className="App-intro">
             <Board
