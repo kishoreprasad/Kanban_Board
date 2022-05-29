@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { form,input,label,p,a} from 'react-bootstrap';
+import { form, input, label, p, a } from "react-bootstrap";
 
 import "./App.css";
 
