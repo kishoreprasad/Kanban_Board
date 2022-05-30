@@ -10,7 +10,7 @@ export default function SignInPage() {
         <h3>MX Kanban</h3>
       </div>
       <h2>Sign in</h2>
-      <form onSubmit={this.handleSubmit}>
+      <form action="/home">
         <p>
           <label>Username or email address</label>
           <br />

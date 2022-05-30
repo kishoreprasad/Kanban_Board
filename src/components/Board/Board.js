@@ -1,5 +1,5 @@
 import "./Board.css";
-import { FaPhotoVideo, FaInfoCircle } from 'react-icons/fa';
+import { FaPhotoVideo, FaInfoCircle } from "react-icons/fa";
 import React, { Component } from "react";
 import Board from "react-trello";
 const data = require("../../data.json");
@@ -57,34 +57,40 @@ class _Board extends Component {
   handleheader = () => {};
   render() {
     return (
-        <div className="App">
-          <div className="App-header">
-            <h3>MX Kanban<div id="icon"><pre>< FaPhotoVideo />    <FaInfoCircle />   </pre></div></h3>            
-          </div>
-          <div className="App-intro">
-            <Board
-              // components={{LaneHeader: this.handleheader}}
-              canAddLanes
-              collapsibleLanes
-              editable
-              onCardAdd={this.handleCardAdd}
-              data={this.state.boardData}
-              draggable
-              onCardClick={this.handleCardClick}
-              onDataChange={this.shouldReceiveNewData}
-              onLaneAdd={this.handleaddlane}
-              eventBusHandle={this.setEventBus}
-              handleDragStart={handleDragStart}
-              handleDragEnd={handleDragEnd}
-              onCardDelete={this.handedelete}
-              editLaneTitle
-              style={{
-                fontFamily: "Verdana",
-                padding: "30px 20px",
-                backgroundColor: "blanchedalmond",
-              }} />
-          </div>
+      <div className="App">
+        <div className="App-header">
+          <h3>
+            MX Kanban
+            <span id="icon">
+              <FaPhotoVideo /> <FaInfoCircle />
+            </span>
+          </h3>
         </div>
+        <div className="App-intro">
+          <Board
+            // components={{LaneHeader: this.handleheader}}
+            canAddLanes
+            collapsibleLanes
+            editable
+            onCardAdd={this.handleCardAdd}
+            data={this.state.boardData}
+            draggable
+            onCardClick={this.handleCardClick}
+            onDataChange={this.shouldReceiveNewData}
+            onLaneAdd={this.handleaddlane}
+            eventBusHandle={this.setEventBus}
+            handleDragStart={handleDragStart}
+            handleDragEnd={handleDragEnd}
+            onCardDelete={this.handedelete}
+            editLaneTitle
+            style={{
+              fontFamily: "Verdana",
+              padding: "30px 20px",
+              backgroundColor: "blanchedalmond",
+            }}
+          />
+        </div>
+      </div>
     );
   }
 }

@@ -1,8 +1,8 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-import LoginPage from "./components/auth/LoginPage";
-import RegisterPage from "./components/auth/RegisterPage";
+import LoginPage from "./components/auth/LoginPage_bak";
+import RegisterPage from "./components/auth/RegisterPage_bak";
 import ForgetPasswordPage from "./components/auth/ForgetPasswordPage";
 import HomePage from "./components/HomePage";
 import _Board from "./components/Board/Board";
