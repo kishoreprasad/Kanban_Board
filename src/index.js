@@ -2,35 +2,50 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
 import "./index.css";
-import registerServiceWorker from "./registerServiceWorker";
-import { createStore, applyMiddleware, compose } from "redux";
 import rootReducer from "./store/reducers/rootReducer";
+import firebase from "firebase/compat/app";
+import "firebase/compat/firestore";
+import "firebase/compat/auth";
+import { createStore } from "redux";
 import { Provider } from "react-redux";
-import thunk from "redux-thunk";
-import { reduxFirestore, getFirestore } from "redux-firestore";
-import { reactReduxFirebase, getFirebase } from "react-redux-firebase";
-import fbConfig from "./config/fbconfig";
+import { ReactReduxFirebaseProvider } from "react-redux-firebase";
+import { createFirestoreInstance } from "redux-firestore";
+import { BrowserRouter } from "react-router-dom";
 
-// const store = createStore(
-//   rootReducer,
-//   compose(
-//     applyMiddleware(thunk.withExtraArgument({ getFirebase, getFirestore })),
-//     reactReduxFirebase(fbConfig, {
-//       userProfile: "users",
-//       useFirestoreForProfile: true,
-//       attachAuthIsReady: true,
-//     }),
-//     reduxFirestore(fbConfig) // redux bindings for firestore
-//   )
-// );
+const config = {
+  apiKey: "AIzaSyBWq64hiBm3YNaDF0oSFUtdS22MkCWNkTA",
+  authDomain: "mx-kanban-75d0d.firebaseapp.com",
+  projectId: "mx-kanban-75d0d",
+  storageBucket: "mx-kanban-75d0d.appspot.com",
+  messagingSenderId: "127487761110",
+  appId: "1:127487761110:web:6735a476acc7f077180777",
+  measurementId: "G-F5MVCNBWPM",
+};
+firebase.initializeApp(config);
+firebase.firestore();
 
-// store.firebaseAuthIsReady.then(() => {
-//   ReactDOM.render(
-//     <Provider store={store}>
-//       <App />
-//     </Provider>,
-//     document.getElementById("root")
-//   );
-//   registerServiceWorker();
-// });
-ReactDOM.render(<App />, document.getElementById("root"));
+const rrfConfig = {
+  userProfile: "users",
+  useFirestoreForProfile: true,
+};
+const initialState = {};
+const store = createStore(rootReducer, initialState);
+
+const rrfProps = {
+  firebase,
+  config: rrfConfig,
+  dispatch: store.dispatch,
+  createFirestoreInstance, //since we are using Firestore
+};
+ReactDOM.render(
+  <React.StrictMode>
+    <Provider store={store}>
+      <ReactReduxFirebaseProvider {...rrfProps}>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </ReactReduxFirebaseProvider>
+    </Provider>
+  </React.StrictMode>,
+  document.getElementById("root")
+);
