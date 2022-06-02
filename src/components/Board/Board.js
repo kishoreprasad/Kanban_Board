@@ -48,7 +48,9 @@ class _Board extends Component {
   handleaddlane = (laneId) => {
     console.log(laneId);
   };
-  handleCardClick = (props) => {};
+  handleCardClick = (props) => {
+    alert(props);
+  };
   handedelete = (props) => {
     alert(props);
     //delete data[props];
