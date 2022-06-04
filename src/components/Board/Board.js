@@ -3,7 +3,6 @@ import { FaPhotoVideo, FaInfoCircle } from 'react-icons/fa';
 import React, { Component, useState } from "react";
 import Board from "react-trello";
 import Modal from "react-modal/lib/components/Modal";
-import CloseIcon from '@mui/icons-material/Close';
 
 const data = require("../../data.json");
 
@@ -31,19 +30,13 @@ class _Board extends Component {
     this.setState({ eventBus });
   };
 
-  _setModalIsOpen = () => {
+  setModalIsOpen = () => {
     var status = !this.modalIsOpen;
     this.setState({
       modalIsOpen: status
     });
 
   };
-  get setModalIsOpen() {
-    return this._setModalIsOpen;
-  }
-  set setModalIsOpen(value) {
-    this._setModalIsOpen = value;
-  }
 
   async componentWillMount() {
     const response = await this.getBoard();
@@ -85,8 +78,8 @@ class _Board extends Component {
         <div className="App-intro">
           <Modal isOpen={this.state.modalIsOpen}>
             <div className='popup_inner'>
-              <h1>hai </h1>
-              <button onClick={this._setModalIsOpen}>close me</button>
+              <h1>kowshi</h1>
+              <button onClick={this.setModalIsOpen}>close me</button>
             </div>
           </Modal>
 
@@ -98,7 +91,7 @@ class _Board extends Component {
             onCardAdd={this.handleCardAdd}
             data={this.state.boardData}
             draggable
-            onCardClick={this._setModalIsOpen}
+            onCardClick={this.setModalIsOpen}
             onDataChange={this.shouldReceiveNewData}
             onLaneAdd={this.handleaddlane}
             eventBusHandle={this.setEventBus}
