@@ -3,7 +3,6 @@ import { FaPhotoVideo, FaInfoCircle } from 'react-icons/fa';
 import React, { Component, useState } from "react";
 import Board from "react-trello";
 import Modal from "react-modal/lib/components/Modal";
-import CloseIcon from '@mui/icons-material/Close';
 
 const data = require("../../data.json");
 
