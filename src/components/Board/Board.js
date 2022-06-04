@@ -85,7 +85,7 @@ class _Board extends Component {
         <div className="App-intro">
           <Modal isOpen={this.state.modalIsOpen}>
             <div className='popup_inner'>
-              <h1>hai babu</h1>
+              <h1>hai </h1>
               <button onClick={this._setModalIsOpen}>close me</button>
             </div>
           </Modal>
