@@ -72,12 +72,17 @@ class _Board extends Component {
     return (
         <div className="App">
           <div className="App-header">
-            <h3>MX Kanban<div id="icon"><pre>< FaPhotoVideo />    <FaInfoCircle />   </pre></div></h3>            
+            <h3>MX Kanban<div id="icon"><pre>< FaPhotoVideo />  <FaInfoCircle /> </pre></div></h3>            
           </div>
           <div className="App-intro">
             <Modal isOpen={this.state.modalIsOpen}>
               <h2>ifewhfeiw</h2>
-
+              <p>
+                ugdfugasegtfreoatfudsatugfygesrgo8vyaesto8higuvetilhealviutligeahrugt4ltv4t
+                aevtiuerytiaevtryae;nvt
+                rtieta
+                ebiaerutvlieryt
+              </p>
             </Modal>
 
             <Board
