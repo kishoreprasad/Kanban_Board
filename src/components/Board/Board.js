@@ -78,11 +78,12 @@ class _Board extends Component {
         <div className="App-intro">
         
           <Dialog open={this.state.modalIsOpen} >
+          <div onClick={this.setModalIsOpen} className="overlay"></div>
         <DialogTitle>Card Name</DialogTitle>
           <p>
             Content of card hai Kowshi<br></br>
           </p>
-          <Button onClick={this.setModalIsOpen} 
+          <Button onClick={this.setModalIsOpen} className="close-modal"
                   color="primary" autoFocus>
             Close Popup
           </Button>
