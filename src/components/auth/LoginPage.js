@@ -4,8 +4,10 @@ import { useHistory } from "react-router-dom";
 const SignIn = () => {
   const firebase = useFirebase();
   const history = useHistory();
-
+  const [email, setEmail] = React.useState("");
+  const [password, setPassword] = React.useState("");
   const signInWithGoogle = () => {
+    console.log("login success");
     firebase
       .login({
         provider: "google",
@@ -13,9 +15,18 @@ const SignIn = () => {
       })
       .then(() => {
         history.push("/home");
+        //update redux state on login information
+        dispatchEvent({
+          type: "LOGIN SUCCESS",
+          payload: {
+            isLoggedIn: true,
+            user: firebase.auth().currentUser,
+          },
+        });
       });
   };
   const signInWithEmail = (email, password) => {
+    console.log("login success");
     firebase
       .login({
         email: email,
@@ -23,6 +34,14 @@ const SignIn = () => {
       })
       .then(() => {
         history.push("/home");
+        console.log("login success");
+        dispatchEvent({
+          type: "LOGIN SUCCESS",
+          payload: {
+            isLoggedIn: true,
+            user: firebase.auth().currentUser,
+          },
+        });
       });
   };
   return (
@@ -39,16 +58,28 @@ const SignIn = () => {
       <p>
         <label>Username or email address</label>
         <br />
-        <input type="text" name="email" required />
+        <input
+          type="text"
+          onChange={(e) => {
+            setEmail(e.target.value);
+          }}
+          required
+        />
       </p>
       <p>
         <label>Password</label>
         <br />
-        <input type="password" name="password" required />
+        <input
+          type="password"
+          onChange={(e) => {
+            setPassword(e.target.value);
+          }}
+          required
+        />
       </p>
       <p>
         <button
-          onclick={(event) => {
+          onClick={(event) => {
             event.preventDefault();
             signInWithEmail(email, password);
           }}

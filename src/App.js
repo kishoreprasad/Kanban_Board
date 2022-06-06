@@ -8,13 +8,14 @@ import ForgetPasswordPage from "./components/auth/ForgetPasswordPage";
 import HomePage from "./components/HomePage";
 import _Board from "./components/Board/Board";
 import { Redirect } from "react-router-dom";
+import NotFound from "./components/notfound";
 export default function App() {
   //const isAuthenticated = getToken();
   return (
     <Router>
       <div>
         <Switch>
-          {/* <PrivateRoute path="/" isAuthenticated={isAuthenticated}>
+          {/* <PrivateRoute path="/">
             <LoginPage />
           </PrivateRoute> */}
           <Route exact path="/" component={LoginPage} />
@@ -23,7 +24,7 @@ export default function App() {
           <Route exact path="/home" component={HomePage} />
           <Route exact path="/board" component={_Board} />
           <Route exact path="/board/:id" component={_Board} />
-          <Redirect from="/" to="/" />
+          <Route component={NotFound} />
         </Switch>
       </div>
     </Router>
