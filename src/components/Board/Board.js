@@ -1,5 +1,5 @@
 import "./Board.css";
-import { FaPhotoVideo, FaInfoCircle } from "react-icons/fa";
+import { FaPhotoVideo, FaInfoCircle,FaSignOutAlt } from "react-icons/fa";
 import React, { Component, useState } from "react";
 import Board from "react-trello";
 import Dialog from "@material-ui/core/Dialog";
@@ -76,7 +76,7 @@ class _Board extends Component {
             MX Kanban
             <div id="icon">
               <span>
-                <FaPhotoVideo /> <FaInfoCircle />{" "}
+                <FaPhotoVideo /> <FaInfoCircle /><FaSignOutAlt/>{" "}
               </span>
             </div>
           </h3>

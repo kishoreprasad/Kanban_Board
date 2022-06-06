@@ -1,4 +1,6 @@
 import React from "react";
+import { FaPhotoVideo, FaInfoCircle,FaSignOutAlt } from "react-icons/fa";
+
 import { Link } from "react-router-dom";
 
 export default function HomePage() {
@@ -6,7 +8,13 @@ export default function HomePage() {
   return (
     <div className="text-center">
       <div className="App-header">
-        <h3>MX Kanban</h3>
+        <h3>MX Kanban
+        <div style={{float: "right"}}>
+              <span>
+               <FaSignOutAlt/>{" "}
+              </span>
+            </div>
+        </h3>
       </div>
       <h1 className="main-title home-page-title">Welcome</h1>
       <Link to="/">
