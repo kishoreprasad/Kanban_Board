@@ -9,25 +9,78 @@
           "id": "Milk",
           "title": "Buy milk",
           "cardStyle": { "width": 270, "maxWidth": 270, "margin": "auto", "marginBottom": 5 },
-          "description": "2 Gallons of milk at the Deli store"
+          "description": "2 Gallons of milk at the Deli store",
+          "tags" : [
+            {
+              "title": "Low"
+            }
+          ]
         },
         {
           "id": "Plan2",
           "title": "Dispose Garbage",
           "cardStyle": { "width": 270, "maxWidth": 270, "margin": "auto", "marginBottom": 5 },
-          "description": "Sort out recyclable and waste as needed"
+          "description": "Sort out recyclable and waste as needed",
+          "tags": [
+            {
+              "bgcolor": "#EB5A46",
+              "color": "white",
+              "title": "High"
+            },
+            {
+              "bgcolor": "#0079BF",
+              "color": "white",
+              "title": "Tech Debt"
+            },
+            {
+              "bgcolor": "#61BD4F",
+              "color": "white",
+              "title": "Very long tag that is"
+            },
+
+            {
+              "bgcolor": "#61BD4F",
+              "color": "white",
+              "title": "One more"
+            }
+          ]
         },
         {
           "id": "Plan3",
           "title": "Write Blog",
           "cardStyle": { "width": 270, "maxWidth": 270, "margin": "auto", "marginBottom": 5 },
-          "description": "Can AI make memes?"
+          "description": "Can AI make memes?",
+          "tags": [
+            {
+              "bgcolor": "#EB5A46",
+              "color": "white",
+              "title": "High"
+            },
+            {
+              "bgcolor": "#0079BF",
+              "color": "white",
+              "title": "Tech Debt"
+            }
+          ]
         },
         {
           "id": "Plan4",
           "title": "Pay Rent",
           "cardStyle": { "width": 270, "maxWidth": 270, "margin": "auto", "marginBottom": 5 },
-          "description": "Transfer to bank account"
+          "description": "Transfer to bank account",
+          "tags": [
+            {
+              "bgcolor": "#61BD4F",
+              "color": "white",
+              "title": "Very long tag that is"
+            },
+
+            {
+              "bgcolor": "#61BD4F",
+              "color": "white",
+              "title": "One more"
+            }
+          ]
         }
       ]
     },
@@ -40,7 +93,20 @@
           "id": "Wip1",
           "title": "Clean House",
           "cardStyle": { "width": 270, "maxWidth": 270, "margin": "auto", "marginBottom": 5 },
-          "description": "Soap wash and polish floor. Polish windows and doors. Scrap all broken glasses"
+          "description": "Soap wash and polish floor. Polish windows and doors. Scrap all broken glasses",
+          "tags": [
+            {
+              "bgcolor": "#EB5A46",
+              "color": "white",
+              "title": "High"
+            },
+
+            {
+              "bgcolor": "#61BD4F",
+              "color": "white",
+              "title": "One more"
+            }
+          ]
         }
       ]
     },
@@ -59,13 +125,37 @@
           "id": "Completed1",
           "title": "Practice Meditation",
           "cardStyle": { "width": 270, "maxWidth": 270, "margin": "auto", "marginBottom": 5 },
-          "description": "Use Headspace app"
+          "description": "Use Headspace app",
+          "tags": [
+            {
+              "bgcolor": "#0079BF",
+              "color": "white",
+              "title": "Tech Debt"
+            },
+            {
+              "bgcolor": "#61BD4F",
+              "color": "white",
+              "title": "One more"
+            }
+          ]
         },
         {
           "id": "Completed2",
           "title": "Maintain Daily Journal",
           "cardStyle": { "width": 270, "maxWidth": 270, "margin": "auto", "marginBottom": 5 },
-          "description": "Use Spreadsheet for now"
+          "description": "Use Spreadsheet for now",
+          "tags": [
+            {
+              "bgcolor": "#EB5A46",
+              "color": "white",
+              "title": "High"
+            },
+            {
+              "bgcolor": "#0079BF",
+              "color": "white",
+              "title": "Tech Debt"
+            }
+          ]
         }
       ]
     }
