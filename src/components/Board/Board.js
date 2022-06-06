@@ -118,6 +118,9 @@ class _Board extends Component {
               padding: "30px 20px",
               backgroundColor: "blanchedalmond",
             }}
+            tagStyle={{
+              fontSize: '80%'
+            }}
           />
         </div>
       </div>
