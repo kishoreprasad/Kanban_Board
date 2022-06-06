@@ -4,6 +4,7 @@ import { FaPhotoVideo, FaInfoCircle,FaSignOutAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 export default function HomePage() {
+  //console.log(store.getState());
   return (
     <div className="text-center">
       <div className="App-header">
