@@ -1,5 +1,6 @@
 const initState = {
   authError: null,
+  isAuthenticated: false,
 };
 
 const authReducer = (state = initState, action) => {
@@ -16,6 +17,7 @@ const authReducer = (state = initState, action) => {
       return {
         ...state,
         authError: null,
+        isAuthenticated: true,
       };
 
     case "SIGNOUT_SUCCESS":
