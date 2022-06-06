@@ -1,5 +1,5 @@
 import "./Board.css";
-import { FaPhotoVideo, FaInfoCircle } from 'react-icons/fa';
+import { FaPhotoVideo, FaInfoCircle } from "react-icons/fa";
 import React, { Component, useState } from "react";
 import Board from "react-trello";
 import Dialog from "@material-ui/core/Dialog";
@@ -24,7 +24,7 @@ const handleDragEnd = (cardId, sourceLaneId, targetLaneId) => {
 class _Board extends Component {
   state = {
     boardData: { lanes: [] },
-    modalIsOpen: false
+    modalIsOpen: false,
   };
   setEventBus = (eventBus) => {
     this.setState({ eventBus });
@@ -33,9 +33,8 @@ class _Board extends Component {
   setModalIsOpen = () => {
     var status = !this.modalIsOpen;
     this.setState({
-      modalIsOpen: status
+      modalIsOpen: status,
     });
-
   };
 
   async componentWillMount() {
@@ -62,32 +61,42 @@ class _Board extends Component {
   handleaddlane = (laneId) => {
     console.log(laneId);
   };
-  handleCardClick = (props) => { };
+  handleCardClick = (props) => {};
   handedelete = (props) => {
     alert(props);
     //delete data[props];
     //alert(data.lanes.id);
   };
-  handleheader = () => { };
+  handleheader = () => {};
   render() {
     return (
       <div className="App">
         <div className="App-header">
-          <h3>MX Kanban<div id="icon"><pre>< FaPhotoVideo />  <FaInfoCircle /> </pre></div></h3>
+          <h3>
+            MX Kanban
+            <div id="icon">
+              <span>
+                <FaPhotoVideo /> <FaInfoCircle />{" "}
+              </span>
+            </div>
+          </h3>
         </div>
         <div className="App-intro">
-        
-          <Dialog open={this.state.modalIsOpen} >
-          <div onClick={this.setModalIsOpen} className="overlay"></div>
-        <DialogTitle>Card Name</DialogTitle>
-          <p>
-            Content of card hai Kowshi<br></br>
-          </p>
-          <Button onClick={this.setModalIsOpen} className="close-modal"
-                  color="primary" autoFocus>
-            Close Popup
-          </Button>
-      </Dialog>
+          <Dialog open={this.state.modalIsOpen}>
+            <div onClick={this.setModalIsOpen} className="overlay"></div>
+            <DialogTitle>Card Name</DialogTitle>
+            <p>
+              Content of card hai Kowshi<br></br>
+            </p>
+            <Button
+              onClick={this.setModalIsOpen}
+              className="close-modal"
+              color="primary"
+              autoFocus
+            >
+              Close Popup
+            </Button>
+          </Dialog>
           <Board
             // components={{LaneHeader: this.handleheader}}
             canAddLanes
@@ -108,7 +117,8 @@ class _Board extends Component {
               fontFamily: "Verdana",
               padding: "30px 20px",
               backgroundColor: "blanchedalmond",
-            }} />
+            }}
+          />
         </div>
       </div>
     );
