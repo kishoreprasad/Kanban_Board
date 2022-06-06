@@ -22,7 +22,7 @@ const config = {
   measurementId: "G-F5MVCNBWPM",
 };
 firebase.initializeApp(config);
-firebase.firestore();
+const db = firebase.firestore();
 
 const rrfConfig = {
   userProfile: "users",
@@ -49,4 +49,5 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById("root")
 );
-console.log(store.getState());
+//console.log(store.getState());
+export default db;

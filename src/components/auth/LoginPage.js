@@ -15,10 +15,10 @@ const SignIn = () => {
         type: "popup",
       })
       .then(() => {
-        history.push("/home");
         dispatch({
           type: "LOGIN_SUCCESS",
         });
+        history.push("/home");
       });
   };
   const signInWithEmail = (email, password) => {
@@ -28,10 +28,10 @@ const SignIn = () => {
         password: password,
       })
       .then(() => {
-        history.push("/home");
         dispatch({
           type: "LOGIN_SUCCESS",
         });
+        history.push("/home");
       });
   };
   return (
