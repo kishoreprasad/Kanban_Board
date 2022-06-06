@@ -101,7 +101,7 @@ class _Board extends Component {
             // components={{LaneHeader: this.handleheader}}
             canAddLanes
             collapsibleLanes
-            editable
+            // editable
             onCardAdd={this.handleCardAdd}
             data={this.state.boardData}
             draggable
