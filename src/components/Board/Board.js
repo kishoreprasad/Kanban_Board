@@ -1,28 +1,50 @@
 import "./Board.css";
-import { FaPhotoVideo, FaInfoCircle } from "react-icons/fa";
+import { FaPhotoVideo, FaInfoCircle, FaSignOutAlt } from "react-icons/fa";
 import React, { Component, useState } from "react";
 import Board from "react-trello";
 import Dialog from "@material-ui/core/Dialog";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Button from "@material-ui/core/Button";
+import db from "../../fbconfig";
 
 const data = require("../../data.json");
+// console.log(data);
 
 const handleDragStart = (cardId, laneId) => {
-  console.log("drag started");
-  console.log(`cardId: ${cardId}`);
-  console.log(`laneId: ${laneId}`);
+  // console.log("drag started");
+  // console.log(`cardId: ${cardId}`);
+  // console.log(`laneId: ${laneId}`);
 };
+// const dbdata = db
+//   .collection("users")
+//   .doc("cHgVYHQM4IZkwS5t5oR6ckctpeF3")
+//   .collection("test")
+//   .doc("TJm1E9NoD90SkF7nwZRf");
+// dbdata.get().then((doc) => {
+//   console.log(doc.data());
+//   const data = doc.data();
+// });
+// dbdata.update({
+//   title: "test",
+//   description: "test",
+//   dueDate: "2020-01-01",
+//   assignee: "test",
+//   status: "test",
+//   priority: "test",
+//   type: "test",
+// });
+//console.log(dbdata);
 
 const handleDragEnd = (cardId, sourceLaneId, targetLaneId) => {
-  console.log("drag ended");
-  console.log(`cardId: ${cardId}`);
-  console.log(`sourceLaneId: ${sourceLaneId}`);
-  console.log(`targetLaneId: ${targetLaneId}`);
+  // console.log("drag ended");
+  // console.log(`cardId: ${cardId}`);
+  // console.log(`sourceLaneId: ${sourceLaneId}`);
+  // console.log(`targetLaneId: ${targetLaneId}`);
 };
 
 class _Board extends Component {
   state = {
+    data: {},
     boardData: { lanes: [] },
     modalIsOpen: false,
   };
@@ -47,26 +69,38 @@ class _Board extends Component {
   async componentWillMount() {
     const response = await this.getBoard();
     this.setState({ boardData: response });
+    const dbdata = db
+      .collection("users")
+      .doc("cHgVYHQM4IZkwS5t5oR6ckctpeF3")
+      .collection("test")
+      .doc("TJm1E9NoD90SkF7nwZRf");
+    dbdata.get().then((doc) => {
+      this.setState({
+        data: doc.data(),
+      });
+    });
   }
-
   getBoard() {
     return new Promise((resolve) => {
       resolve(data);
     });
+    // return new Promise((resolve) => {
+    //   resolve(this.state.data);
+    // });
   }
 
   shouldReceiveNewData = (nextData) => {
-    console.log("New card has been added");
-    console.log(nextData);
+    // console.log("New card has been added");
+    // console.log(nextData);
   };
 
   handleCardAdd = (card, laneId) => {
-    console.log(`New card added to lane ${laneId}`);
-    console.dir(card);
+    // console.log(`New card added to lane ${laneId}`);
+    // console.dir(card);
   };
 
   handleaddlane = (laneId) => {
-    console.log(laneId);
+    // console.log(laneId);
   };
   handleCardClick = (props) => {};
   handedelete = (props) => {
@@ -83,7 +117,8 @@ class _Board extends Component {
             MX Kanban
             <div id="icon">
               <span>
-                <FaPhotoVideo /> <FaInfoCircle />{" "}
+                <FaPhotoVideo /> <FaInfoCircle />
+                <FaSignOutAlt />{" "}
               </span>
             </div>
           </h3>
@@ -124,6 +159,9 @@ class _Board extends Component {
               fontFamily: "Verdana",
               padding: "30px 20px",
               backgroundColor: "blanchedalmond",
+            }}
+            tagStyle={{
+              fontSize: "80%",
             }}
           />
         </div>

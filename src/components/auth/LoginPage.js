@@ -1,47 +1,37 @@
 import React from "react";
 import { useFirebase } from "react-redux-firebase";
 import { useHistory } from "react-router-dom";
+import { useDispatch } from "react-redux";
 const SignIn = () => {
+  const dispatch = useDispatch();
   const firebase = useFirebase();
   const history = useHistory();
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const signInWithGoogle = () => {
-    console.log("login success");
     firebase
       .login({
         provider: "google",
         type: "popup",
       })
       .then(() => {
-        history.push("/home");
-        //update redux state on login information
-        dispatchEvent({
-          type: "LOGIN SUCCESS",
-          payload: {
-            isLoggedIn: true,
-            user: firebase.auth().currentUser,
-          },
+        dispatch({
+          type: "LOGIN_SUCCESS",
         });
+        history.push("/home");
       });
   };
   const signInWithEmail = (email, password) => {
-    console.log("login success");
     firebase
       .login({
         email: email,
         password: password,
       })
       .then(() => {
-        history.push("/home");
-        console.log("login success");
-        dispatchEvent({
-          type: "LOGIN SUCCESS",
-          payload: {
-            isLoggedIn: true,
-            user: firebase.auth().currentUser,
-          },
+        dispatch({
+          type: "LOGIN_SUCCESS",
         });
+        history.push("/home");
       });
   };
   return (
