@@ -36,6 +36,13 @@ class _Board extends Component {
       modalIsOpen: status,
     });
   };
+  setModalIsClose = () => {
+    var status = this.modalIsOpen;
+    this.setState({
+      modalIsOpen: status,
+    });
+  };
+  
 
   async componentWillMount() {
     const response = await this.getBoard();
@@ -89,7 +96,7 @@ class _Board extends Component {
               Content of card hai Kowshi<br></br>
             </p>
             <Button
-              onClick={this.setModalIsOpen}
+              onClick={this.setModalIsClose}
               className="close-modal"
               color="primary"
               autoFocus
