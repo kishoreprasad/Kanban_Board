@@ -158,7 +158,7 @@ class _Board extends Component {
         </div>
         <div className="App-intro">
           <Dialog open={this.state.modalIsOpen}>
-            <div onClick={this.setModalIsOpen} className="overlay"></div>
+            <div onClick={this.setModalIsClose} className="overlay"></div>
             <DialogTitle>Card Name</DialogTitle>
             <p>
               Content of card hai Kowshi<br></br>
