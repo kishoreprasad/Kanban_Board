@@ -6,12 +6,9 @@ import Dialog from "@material-ui/core/Dialog";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Button from "@material-ui/core/Button";
 import db from "../../fbconfig";
-<<<<<<< Updated upstream
-=======
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import Redirect from "react-router-dom/Redirect";
->>>>>>> Stashed changes
 // const data = require("../../data.json");
 // console.log(data);
 //get userid from firebase
@@ -180,14 +177,17 @@ class _Board extends Component {
           <Dialog open={this.state.modalIsOpen}>
             <div onClick={this.setModalIsClose} className="overlay"></div>
             <DialogTitle>Card Name</DialogTitle>
-            <div>
-              Description
-            </div>
+            <div>Description</div>
             <label>
-            Tags<br></br><pre>
-            High   <input type="checkbox" /><br></br>
-            Medium <input type="checkbox" /><br></br>
-            Low    <input type="checkbox" /><br></br></pre>
+              Tags<br></br>
+              <pre>
+                High <input type="checkbox" />
+                <br></br>
+                Medium <input type="checkbox" />
+                <br></br>
+                Low <input type="checkbox" />
+                <br></br>
+              </pre>
             </label>
             <Button
               onClick={this.setModalIsClose}
@@ -206,8 +206,8 @@ class _Board extends Component {
             data={this.state.boardData}
             draggable
             onCardClick={
-              //this.setModalIsOpen}
-              this.handleCardClick
+              this.setModalIsOpen
+              //this.handleCardClick
             }
             onDataChange={this.shouldReceiveNewData}
             onLaneAdd={this.handleaddlane}
