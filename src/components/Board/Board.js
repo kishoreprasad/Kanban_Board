@@ -7,7 +7,7 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import Button from "@material-ui/core/Button";
 import db from "../../fbconfig";
 
-const data = require("../../data.json");
+// const data = require("../../data.json");
 // console.log(data);
 
 const handleDragStart = (cardId, laneId) => {
@@ -34,6 +34,11 @@ const handleDragStart = (cardId, laneId) => {
 //   type: "test",
 // });
 //console.log(dbdata);
+const dbdata = db
+  .collection("users")
+  .doc("cHgVYHQM4IZkwS5t5oR6ckctpeF3")
+  .collection("test")
+  .doc("TJm1E9NoD90SkF7nwZRf");
 
 const handleDragEnd = (cardId, sourceLaneId, targetLaneId) => {
   // console.log("drag ended");
@@ -67,48 +72,76 @@ class _Board extends Component {
   
 
   async componentWillMount() {
-    const response = await this.getBoard();
-    this.setState({ boardData: response });
-    const dbdata = db
-      .collection("users")
-      .doc("cHgVYHQM4IZkwS5t5oR6ckctpeF3")
-      .collection("test")
-      .doc("TJm1E9NoD90SkF7nwZRf");
-    dbdata.get().then((doc) => {
-      this.setState({
-        data: doc.data(),
+    dbdata
+      .get()
+      .then((doc) => {
+        this.setState({
+          data: doc.data(),
+        });
+      })
+      .then(async () => {
+        const response = await this.getBoard();
+        this.setState({ boardData: response });
       });
-    });
   }
   getBoard() {
     return new Promise((resolve) => {
-      resolve(data);
+      resolve(this.state.data);
+      console.log(this.state.data);
     });
-    // return new Promise((resolve) => {
-    //   resolve(this.state.data);
-    // });
   }
 
   shouldReceiveNewData = (nextData) => {
     // console.log("New card has been added");
-    // console.log(nextData);
+    //console.log(nextData);
+    console.log(nextData);
+    this.setState({
+      data: nextData,
+    });
+    dbdata.set(nextData);
   };
 
   handleCardAdd = (card, laneId) => {
-    // console.log(`New card added to lane ${laneId}`);
-    // console.dir(card);
+    this.state.data.lanes.forEach((lane) => {
+      if (lane.id === laneId) {
+        lane.cards.push(card);
+      }
+    });
+    this.setState({
+      data: this.state.data,
+    });
+    dbdata.set(this.state.data);
   };
 
   handleaddlane = (laneId) => {
-    // console.log(laneId);
+    //console.log(laneId);
+    this.state.data.lanes.push({
+      id: laneId.id,
+      title: laneId.title,
+      cards: [],
+    });
+    this.setState({
+      data: this.state.data,
+    });
+    dbdata.set(this.state.data);
   };
   handleCardClick = (props) => {};
-  handedelete = (props) => {
-    alert(props);
-    //delete data[props];
-    //alert(data.lanes.id);
+  handedelete = (card, laneId) => {
+    //console.log(card, laneId);
+    this.state.data.lanes.forEach((lane) => {
+      if (lane.id === laneId) {
+        lane.cards.forEach((card, index) => {
+          if (card.id === card.id) {
+            lane.cards.splice(index, 1);
+          }
+        });
+      }
+    });
+    this.setState({
+      data: this.state.data,
+    });
+    dbdata.set(this.state.data);
   };
-  handleheader = () => {};
   render() {
     return (
       <div className="App">
@@ -140,10 +173,9 @@ class _Board extends Component {
             </Button>
           </Dialog>
           <Board
-            // components={{LaneHeader: this.handleheader}}
             canAddLanes
             collapsibleLanes
-            // editable
+            editable
             onCardAdd={this.handleCardAdd}
             data={this.state.boardData}
             draggable
