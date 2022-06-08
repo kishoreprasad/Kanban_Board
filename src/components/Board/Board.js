@@ -48,11 +48,24 @@ const handleDragStart = (cardId, laneId) => {
 //console.log(dbdata);
 
 //!IMPORTANT
-// firebase.auth().onAuthStateChanged((user) => {
-//   if (user) {
-//     return user.uid;
-//   }
-// });
+firebase.auth().onAuthStateChanged((user) => {
+  if (user) {
+    //return user.uid;
+    console.log(
+      "User Id of the user that is currently logged in is: " +
+        user.uid +
+        "\n" +
+        "User Email of the user that is currently logged in is: " +
+        user.email +
+        "\n" +
+        "User Display Name of the user that is currently logged in is: " +
+        user.displayName +
+        "\n" +
+        "This User Id will be used to query the database for the user's data"
+    );
+    //console.log(user.uid);
+  }
+});
 
 const dbdata = db
   .collection("users")
