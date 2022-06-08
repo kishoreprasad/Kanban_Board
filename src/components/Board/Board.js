@@ -6,13 +6,29 @@ import Dialog from "@material-ui/core/Dialog";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Button from "@material-ui/core/Button";
 import db from "../../fbconfig";
+<<<<<<< Updated upstream
+=======
+import firebase from "firebase/compat/app";
+import "firebase/compat/auth";
+import Redirect from "react-router-dom/Redirect";
+>>>>>>> Stashed changes
 // const data = require("../../data.json");
 // console.log(data);
-
+//get userid from firebase
+//console.log("state = unknown (until the callback is invoked)");
+// firebase.auth().onAuthStateChanged((user) => {
+//   if (user) {
+//     this.state.uid = user.uid;
+//   } else {
+//     // alert("Please login to use this feature");
+//     // <Redirect from="/board" to="/" />;
+//     // uid = null;
+//   }
+// });
 const handleDragStart = (cardId, laneId) => {
-  // console.log("drag started");
-  // console.log(`cardId: ${cardId}`);
-  // console.log(`laneId: ${laneId}`);
+  console.log("drag started");
+  console.log(`cardId: ${cardId}`);
+  console.log(`laneId: ${laneId}`);
 };
 // const dbdata = db
 //   .collection("users")
@@ -33,6 +49,14 @@ const handleDragStart = (cardId, laneId) => {
 //   type: "test",
 // });
 //console.log(dbdata);
+
+//!IMPORTANT
+// firebase.auth().onAuthStateChanged((user) => {
+//   if (user) {
+//     return user.uid;
+//   }
+// });
+
 const dbdata = db
   .collection("users")
   .doc("cHgVYHQM4IZkwS5t5oR6ckctpeF3")
@@ -40,14 +64,15 @@ const dbdata = db
   .doc("TJm1E9NoD90SkF7nwZRf");
 
 const handleDragEnd = (cardId, sourceLaneId, targetLaneId) => {
-  // console.log("drag ended");
-  // console.log(`cardId: ${cardId}`);
-  // console.log(`sourceLaneId: ${sourceLaneId}`);
-  // console.log(`targetLaneId: ${targetLaneId}`);
+  console.log("drag ended");
+  console.log(`cardId: ${cardId}`);
+  console.log(`sourceLaneId: ${sourceLaneId}`);
+  console.log(`targetLaneId: ${targetLaneId}`);
 };
 
 class _Board extends Component {
   state = {
+    uid: null,
     data: {},
     boardData: { lanes: [] },
     modalIsOpen: false,
@@ -68,7 +93,6 @@ class _Board extends Component {
       modalIsOpen: status,
     });
   };
-  
 
   async componentWillMount() {
     dbdata
@@ -91,9 +115,6 @@ class _Board extends Component {
   }
 
   shouldReceiveNewData = (nextData) => {
-    // console.log("New card has been added");
-    //console.log(nextData);
-    console.log(nextData);
     this.setState({
       data: nextData,
     });
@@ -113,7 +134,6 @@ class _Board extends Component {
   };
 
   handleaddlane = (laneId) => {
-    //console.log(laneId);
     this.state.data.lanes.push({
       id: laneId.id,
       title: laneId.title,
@@ -124,9 +144,10 @@ class _Board extends Component {
     });
     dbdata.set(this.state.data);
   };
-  handleCardClick = (props) => {};
+  handleCardClick = (props) => {
+    console.log(props);
+  };
   handedelete = (card, laneId) => {
-    //console.log(card, laneId);
     this.state.data.lanes.forEach((lane) => {
       if (lane.id === laneId) {
         lane.cards.forEach((card, index) => {
@@ -184,7 +205,10 @@ class _Board extends Component {
             onCardAdd={this.handleCardAdd}
             data={this.state.boardData}
             draggable
-            onCardClick={this.setModalIsOpen}
+            onCardClick={
+              //this.setModalIsOpen}
+              this.handleCardClick
+            }
             onDataChange={this.shouldReceiveNewData}
             onLaneAdd={this.handleaddlane}
             eventBusHandle={this.setEventBus}
