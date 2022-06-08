@@ -6,7 +6,6 @@ import Dialog from "@material-ui/core/Dialog";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Button from "@material-ui/core/Button";
 import db from "../../fbconfig";
-
 // const data = require("../../data.json");
 // console.log(data);
 
@@ -160,9 +159,15 @@ class _Board extends Component {
           <Dialog open={this.state.modalIsOpen}>
             <div onClick={this.setModalIsClose} className="overlay"></div>
             <DialogTitle>Card Name</DialogTitle>
-            <p>
-              Content of card hai Kowshi<br></br>
-            </p>
+            <div>
+              Description
+            </div>
+            <label>
+            Tags<br></br><pre>
+            High   <input type="checkbox" /><br></br>
+            Medium <input type="checkbox" /><br></br>
+            Low    <input type="checkbox" /><br></br></pre>
+            </label>
             <Button
               onClick={this.setModalIsClose}
               className="close-modal"
