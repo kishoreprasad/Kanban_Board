@@ -48,7 +48,7 @@ const SignIn = () => {
       <p>
         <label>Username or email address</label>
         <br />
-        <input
+        <input style={{border:"1px solid black"}}
           type="text"
           onChange={(e) => {
             setEmail(e.target.value);
@@ -59,7 +59,7 @@ const SignIn = () => {
       <p>
         <label>Password</label>
         <br />
-        <input
+        <input style={{border:"1px solid black"}}
           type="password"
           onChange={(e) => {
             setPassword(e.target.value);
