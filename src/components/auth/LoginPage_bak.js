@@ -14,15 +14,15 @@ export default function SignInPage() {
         <p>
           <label>Username or email address</label>
           <br />
-          <input type="text" name="email" required />
+          <input style={{border:"3px solid black"}} type="text" name="email" required />
         </p>
         <p>
           <label>Password</label>
           <br />
-          <input type="password" name="password" required />
+          <input style={{border:"3px solid black"}} type="password" name="password" required />
         </p>
         <p>
-          <button
+          <button 
             onclick="/home"
             className="primary-button"
             id="sub_btn"
