@@ -1,10 +1,10 @@
-import * as React from 'react';
-import Backdrop from '@mui/material/Backdrop';
-import Box from '@mui/material/Box';
-import Modal from '@mui/material/Modal';
-import Fade from '@mui/material/Fade';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
+import * as React from "react";
+import Backdrop from "@mui/material/Backdrop";
+import Box from "@mui/material/Box";
+import Modal from "@mui/material/Modal";
+import Fade from "@mui/material/Fade";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
 import { FaPhotoVideo, FaInfoCircle, FaSignOutAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { useFirebase } from "react-redux-firebase";
@@ -12,13 +12,13 @@ import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
 const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
   width: 400,
-  bgcolor: 'background.paper',
-  border: '2px solid #000',
+  bgcolor: "background.paper",
+  border: "2px solid #000",
   boxShadow: 24,
   p: 4,
 };
@@ -30,6 +30,7 @@ export default function TransitionsModal() {
   const firebase = useFirebase();
   const history = useHistory();
   const dispatch = useDispatch();
+  const [board_name, setBoardName] = React.useState("");
   function signout() {
     firebase.logout().then(() => {
       dispatch({
@@ -37,6 +38,13 @@ export default function TransitionsModal() {
       });
       history.push("/");
     });
+  }
+  function passname(name) {
+    dispatch({
+      type: "SET_BOARD_NAME",
+      board_name: name,
+    });
+    history.push("/home");
   }
   return (
     <div>
@@ -47,7 +55,7 @@ export default function TransitionsModal() {
             <button onClick={() => signout()}>
               <span>
                 <FaSignOutAlt />
-                {"Logout"}
+                {""}
               </span>
             </button>
           </div>
@@ -57,8 +65,10 @@ export default function TransitionsModal() {
       <Link to="/board">
         <button className="primary-button">Go to Board</button>
       </Link>
-        <button onClick={handleOpen} className="primary-button">Create Board</button>
-      
+      <button onClick={handleOpen} className="primary-button">
+        Create Board
+      </button>
+
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
@@ -77,10 +87,25 @@ export default function TransitionsModal() {
             </Typography>
             <Typography id="transition-modal-description" sx={{ mt: 2 }}>
               Name of the Board
-              <input type="text" style={{border:"1px solid black"}} />
+              <input
+                type="text"
+                style={{ border: "1px solid black" }}
+                onChange={(e) => {
+                  setBoardName(e.target.value);
+                }}
+                required
+              />
             </Typography>
             <Link to="/board">
-            <button className="primary-button">create Board</button>
+              <button
+                className="primary-button"
+                onClick={(e) => {
+                  //e.preventDefault();
+                  passname(board_name);
+                }}
+              >
+                create Board
+              </button>
             </Link>
           </Box>
         </Fade>

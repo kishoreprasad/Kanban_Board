@@ -11,59 +11,11 @@ import "firebase/compat/auth";
 import Redirect from "react-router-dom/Redirect";
 import { connect } from "react-redux";
 
-// const data = require("../../data.json");
-// console.log(data);
-//get userid from firebase
-//console.log("state = unknown (until the callback is invoked)");
-// firebase.auth().onAuthStateChanged((user) => {
-//   if (user) {
-//     this.props.auth.uid = user.uid;
-//   } else {
-//     // alert("Please login to use this feature");
-//     // <Redirect from="/board" to="/" />;
-//     // uid = null;
-//   }
-// });
 const handleDragStart = (cardId, laneId) => {
   // console.log("drag started");
   // console.log(`cardId: ${cardId}`);
   // console.log(`laneId: ${laneId}`);
 };
-// // const db
-//       .collection("users")
-//       .doc(this.props.auth.uid)
-//       .collection("test")
-//       .doc("TJm1E9NoD90SkF7nwZRf") = db
-//   .collection("users")
-//   .doc("cHgVYHQM4IZkwS5t5oR6ckctpeF3")
-//   .collection("test")
-//   .doc("TJm1E9NoD90SkF7nwZRf");
-// db
-// .collection("users")
-// .doc(this.props.auth.uid)
-// .collection("test")
-// .doc("TJm1E9NoD90SkF7nwZRf").get().then((doc) => {
-//   console.log(doc.data());
-//   const data = doc.data();
-// });
-// db
-// .collection("users")
-// .doc(this.props.auth.uid)
-// .collection("test")
-// .doc("TJm1E9NoD90SkF7nwZRf").update({
-//   title: "test",
-//   description: "test",
-//   dueDate: "2020-01-01",
-//   assignee: "test",
-//   status: "test",
-//   priority: "test",
-//   type: "test",
-// });
-//console.log(db
-// .collection("users")
-// .doc(this.props.auth.uid)
-// .collection("test")
-// .doc("TJm1E9NoD90SkF7nwZRf"));
 
 //!IMPORTANT
 //console.log(this.props.auth.uid);
@@ -98,12 +50,23 @@ class _Board extends Component {
   };
   async componentWillMount() {
     //console.log(this.props.auth.uid);
-    this.setState({ uid: this.props.auth.uid });
-    console.log(this.state.uid);
-    db.collection("users")
+    //console.log(this.props.misc.boardname);
+    this.setState({ uid: this.props.auth.uid }, () => {
+      console.log(this.state.uid);
+    });
+    //console.log(this.state.uid);
+    // db.listCollections("users")
+    //   .then((snapshot) => {
+    //     snapshot.forEach((snaps) => {
+    //       console.log(snaps["_queryOptions"].collectionId); // LIST OF ALL COLLECTIONS
+    //     });
+    //   })
+    //   .catch((error) => console.error(error));
+    await db
+      .collection("users")
       .doc(this.props.auth.uid)
-      .collection("test")
-      .doc("TJm1E9NoD90SkF7nwZRf")
+      .collection(this.props.misc.boardname)
+      .doc("board_data")
       .get()
       .then((doc) => {
         this.setState({
@@ -127,8 +90,8 @@ class _Board extends Component {
     });
     db.collection("users")
       .doc(this.props.auth.uid)
-      .collection("test")
-      .doc("TJm1E9NoD90SkF7nwZRf")
+      .collection(this.props.misc.boardname)
+      .doc("board_data")
       .set(nextData);
   };
 
@@ -143,8 +106,8 @@ class _Board extends Component {
     });
     db.collection("users")
       .doc(this.props.auth.uid)
-      .collection("test")
-      .doc("TJm1E9NoD90SkF7nwZRf")
+      .collection(this.props.misc.boardname)
+      .doc("board_data")
       .set(this.state.data);
   };
 
@@ -159,8 +122,8 @@ class _Board extends Component {
     });
     db.collection("users")
       .doc(this.props.auth.uid)
-      .collection("test")
-      .doc("TJm1E9NoD90SkF7nwZRf")
+      .collection(this.props.misc.boardname)
+      .doc("board_data")
       .set(this.state.data);
   };
   handleCardClick = (props) => {
@@ -181,8 +144,8 @@ class _Board extends Component {
     });
     db.collection("users")
       .doc(this.props.auth.uid)
-      .collection("test")
-      .doc("TJm1E9NoD90SkF7nwZRf")
+      .collection(this.props.misc.boardname)
+      .doc("board_data")
       .set(this.state.data);
   };
   render() {
@@ -258,6 +221,7 @@ class _Board extends Component {
 }
 const mapStateToProps = (state) => ({
   auth: state.auth,
+  misc: state.misc,
 });
 
 export default connect(mapStateToProps)(_Board);
