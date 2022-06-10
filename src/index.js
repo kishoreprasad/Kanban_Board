@@ -26,14 +26,12 @@ const rrfProps = {
   createFirestoreInstance,
 };
 ReactDOM.render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <ReactReduxFirebaseProvider {...rrfProps}>
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
-      </ReactReduxFirebaseProvider>
-    </Provider>
-  </React.StrictMode>,
+  <Provider store={store}>
+    <ReactReduxFirebaseProvider {...rrfProps}>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </ReactReduxFirebaseProvider>
+  </Provider>,
   document.getElementById("root")
 );

@@ -1,3 +1,5 @@
+import firebase from "firebase/compat/app";
+import "firebase/compat/auth";
 const initState = {
   authError: null,
   isAuthenticated: false,
@@ -16,6 +18,7 @@ const authReducer = (state = initState, action) => {
       console.log("login success bla");
       return {
         ...state,
+        uid: action.uid,
         authError: null,
         isAuthenticated: true,
       };

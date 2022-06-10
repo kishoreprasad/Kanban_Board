@@ -9,13 +9,15 @@ import db from "../../fbconfig";
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import Redirect from "react-router-dom/Redirect";
+import { connect } from "react-redux";
+
 // const data = require("../../data.json");
 // console.log(data);
 //get userid from firebase
 //console.log("state = unknown (until the callback is invoked)");
 // firebase.auth().onAuthStateChanged((user) => {
 //   if (user) {
-//     this.state.uid = user.uid;
+//     this.props.auth.uid = user.uid;
 //   } else {
 //     // alert("Please login to use this feature");
 //     // <Redirect from="/board" to="/" />;
@@ -23,20 +25,32 @@ import Redirect from "react-router-dom/Redirect";
 //   }
 // });
 const handleDragStart = (cardId, laneId) => {
-  console.log("drag started");
-  console.log(`cardId: ${cardId}`);
-  console.log(`laneId: ${laneId}`);
+  // console.log("drag started");
+  // console.log(`cardId: ${cardId}`);
+  // console.log(`laneId: ${laneId}`);
 };
-// const dbdata = db
+// // const db
+//       .collection("users")
+//       .doc(this.props.auth.uid)
+//       .collection("test")
+//       .doc("TJm1E9NoD90SkF7nwZRf") = db
 //   .collection("users")
 //   .doc("cHgVYHQM4IZkwS5t5oR6ckctpeF3")
 //   .collection("test")
 //   .doc("TJm1E9NoD90SkF7nwZRf");
-// dbdata.get().then((doc) => {
+// db
+// .collection("users")
+// .doc(this.props.auth.uid)
+// .collection("test")
+// .doc("TJm1E9NoD90SkF7nwZRf").get().then((doc) => {
 //   console.log(doc.data());
 //   const data = doc.data();
 // });
-// dbdata.update({
+// db
+// .collection("users")
+// .doc(this.props.auth.uid)
+// .collection("test")
+// .doc("TJm1E9NoD90SkF7nwZRf").update({
 //   title: "test",
 //   description: "test",
 //   dueDate: "2020-01-01",
@@ -45,39 +59,19 @@ const handleDragStart = (cardId, laneId) => {
 //   priority: "test",
 //   type: "test",
 // });
-//console.log(dbdata);
+//console.log(db
+// .collection("users")
+// .doc(this.props.auth.uid)
+// .collection("test")
+// .doc("TJm1E9NoD90SkF7nwZRf"));
 
 //!IMPORTANT
-firebase.auth().onAuthStateChanged((user) => {
-  if (user) {
-    //return user.uid;
-    console.log(
-      "User Id of the user that is currently logged in is: " +
-        user.uid +
-        "\n" +
-        "User Email of the user that is currently logged in is: " +
-        user.email +
-        "\n" +
-        "User Display Name of the user that is currently logged in is: " +
-        user.displayName +
-        "\n" +
-        "This User Id will be used to query the database for the user's data"
-    );
-    //console.log(user.uid);
-  }
-});
-
-const dbdata = db
-  .collection("users")
-  .doc("cHgVYHQM4IZkwS5t5oR6ckctpeF3")
-  .collection("test")
-  .doc("TJm1E9NoD90SkF7nwZRf");
-
+//console.log(this.props.auth.uid);
 const handleDragEnd = (cardId, sourceLaneId, targetLaneId) => {
-  console.log("drag ended");
-  console.log(`cardId: ${cardId}`);
-  console.log(`sourceLaneId: ${sourceLaneId}`);
-  console.log(`targetLaneId: ${targetLaneId}`);
+  // console.log("drag ended");
+  // console.log(`cardId: ${cardId}`);
+  // console.log(`sourceLaneId: ${sourceLaneId}`);
+  // console.log(`targetLaneId: ${targetLaneId}`);
 };
 
 class _Board extends Component {
@@ -90,7 +84,6 @@ class _Board extends Component {
   setEventBus = (eventBus) => {
     this.setState({ eventBus });
   };
-
   setModalIsOpen = () => {
     var status = !this.modalIsOpen;
     this.setState({
@@ -103,9 +96,14 @@ class _Board extends Component {
       modalIsOpen: status,
     });
   };
-
   async componentWillMount() {
-    dbdata
+    //console.log(this.props.auth.uid);
+    this.setState({ uid: this.props.auth.uid });
+    console.log(this.state.uid);
+    db.collection("users")
+      .doc(this.props.auth.uid)
+      .collection("test")
+      .doc("TJm1E9NoD90SkF7nwZRf")
       .get()
       .then((doc) => {
         this.setState({
@@ -120,7 +118,6 @@ class _Board extends Component {
   getBoard() {
     return new Promise((resolve) => {
       resolve(this.state.data);
-      console.log(this.state.data);
     });
   }
 
@@ -128,7 +125,11 @@ class _Board extends Component {
     this.setState({
       data: nextData,
     });
-    dbdata.set(nextData);
+    db.collection("users")
+      .doc(this.props.auth.uid)
+      .collection("test")
+      .doc("TJm1E9NoD90SkF7nwZRf")
+      .set(nextData);
   };
 
   handleCardAdd = (card, laneId) => {
@@ -140,7 +141,11 @@ class _Board extends Component {
     this.setState({
       data: this.state.data,
     });
-    dbdata.set(this.state.data);
+    db.collection("users")
+      .doc(this.props.auth.uid)
+      .collection("test")
+      .doc("TJm1E9NoD90SkF7nwZRf")
+      .set(this.state.data);
   };
 
   handleaddlane = (laneId) => {
@@ -152,16 +157,20 @@ class _Board extends Component {
     this.setState({
       data: this.state.data,
     });
-    dbdata.set(this.state.data);
+    db.collection("users")
+      .doc(this.props.auth.uid)
+      .collection("test")
+      .doc("TJm1E9NoD90SkF7nwZRf")
+      .set(this.state.data);
   };
   handleCardClick = (props) => {
     console.log(props);
   };
-  handedelete = (card, laneId) => {
+  handedelete = (cards, laneId) => {
     this.state.data.lanes.forEach((lane) => {
       if (lane.id === laneId) {
         lane.cards.forEach((card, index) => {
-          if (card.id === card.id) {
+          if (cards === card.id) {
             lane.cards.splice(index, 1);
           }
         });
@@ -170,7 +179,11 @@ class _Board extends Component {
     this.setState({
       data: this.state.data,
     });
-    dbdata.set(this.state.data);
+    db.collection("users")
+      .doc(this.props.auth.uid)
+      .collection("test")
+      .doc("TJm1E9NoD90SkF7nwZRf")
+      .set(this.state.data);
   };
   render() {
     return (
@@ -243,5 +256,8 @@ class _Board extends Component {
     );
   }
 }
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+});
 
-export default _Board;
+export default connect(mapStateToProps)(_Board);

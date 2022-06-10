@@ -13,21 +13,15 @@ export default function App() {
     <Router>
       <div>
         <Switch>
-          <PrivateRoute>
-            {/* <LoginPage /> */}
-            <Route exact path="/" component={LoginPage} />
-            <Route exact path="/register" component={RegisterPage} />
-            <Route
-              exact
-              path="/forget-password"
-              component={ForgetPasswordPage}
-            />
-            <Route path="/home" component={HomePage} />
-            <Route path="/board" component={_Board} />
-            <Route path="/board/:id" component={_Board} />
-            <Route path="/notfound" component={NotFound} />
-            {/* <Route path="*" element={<Redirect to="/notfound" replace />} /> */}
-          </PrivateRoute>
+          {/* <LoginPage /> */}
+          <Route exact path="/" component={LoginPage} />
+          <Route exact path="/register" component={RegisterPage} />
+          <Route exact path="/forget-password" component={ForgetPasswordPage} />
+          <Route path="/home" component={HomePage} />
+          <Route path="/board" component={_Board} />
+          <Route path="/board/:id" component={_Board} />
+          <Route path="/notfound" component={NotFound} />
+          {/* <Route path="*" element={<Redirect to="/notfound" replace />} /> */}
         </Switch>
       </div>
     </Router>

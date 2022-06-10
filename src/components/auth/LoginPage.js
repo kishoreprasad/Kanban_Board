@@ -14,9 +14,11 @@ const SignIn = () => {
         provider: "google",
         type: "popup",
       })
-      .then(() => {
+      .then((e) => {
+        //console.log(e.user.uid);
         dispatch({
           type: "LOGIN_SUCCESS",
+          uid: e.user.uid,
         });
         history.push("/home");
       });
@@ -27,9 +29,11 @@ const SignIn = () => {
         email: email,
         password: password,
       })
-      .then(() => {
+      .then((e) => {
+        //console.log(e.user.user.uid);
         dispatch({
           type: "LOGIN_SUCCESS",
+          uid: e.user.user.uid,
         });
         history.push("/home");
       });
