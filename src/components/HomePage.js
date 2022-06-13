@@ -101,6 +101,9 @@ export default function TransitionsModal() {
                 className="primary-button"
                 onClick={(e) => {
                   //e.preventDefault();
+
+                  localStorage.setItem("bname", board_name);
+
                   passname(board_name);
                 }}
               >

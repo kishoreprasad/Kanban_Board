@@ -16,6 +16,7 @@ const SignIn = () => {
       })
       .then((e) => {
         //console.log(e.user.uid);
+        localStorage.setItem("uid", e.user.uid);
         dispatch({
           type: "LOGIN_SUCCESS",
           uid: e.user.uid,
@@ -31,6 +32,7 @@ const SignIn = () => {
       })
       .then((e) => {
         //console.log(e.user.user.uid);
+        localStorage.setItem("uid", e.user.uid);
         dispatch({
           type: "LOGIN_SUCCESS",
           uid: e.user.user.uid,
@@ -52,7 +54,8 @@ const SignIn = () => {
       <p>
         <label>Username or email address</label>
         <br />
-        <input style={{border:"1px solid black"}}
+        <input
+          style={{ border: "1px solid black" }}
           type="text"
           onChange={(e) => {
             setEmail(e.target.value);
@@ -63,7 +66,8 @@ const SignIn = () => {
       <p>
         <label>Password</label>
         <br />
-        <input style={{border:"1px solid black"}}
+        <input
+          style={{ border: "1px solid black" }}
           type="password"
           onChange={(e) => {
             setPassword(e.target.value);

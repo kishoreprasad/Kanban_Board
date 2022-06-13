@@ -1,6 +1,6 @@
 import "./Board.css";
 import { FaPhotoVideo, FaInfoCircle, FaSignOutAlt } from "react-icons/fa";
-import React, { Component, useState } from "react";
+import React, { Component, useEffect, useState } from "react";
 import Board from "react-trello";
 import Dialog from "@material-ui/core/Dialog";
 import DialogTitle from "@material-ui/core/DialogTitle";
@@ -29,6 +29,7 @@ const handleDragEnd = (cardId, sourceLaneId, targetLaneId) => {
 class _Board extends Component {
   state = {
     uid: null,
+    collection: null,
     data: {},
     boardData: { lanes: [] },
     modalIsOpen: false,
@@ -50,34 +51,42 @@ class _Board extends Component {
   };
   async componentWillMount() {
     //console.log(this.props.auth.uid);
+    //window.localStorage("uid", this.props.auth.uid);
+    //window.localStorage("collection", this.props.auth.collection);
+    // localStorage.setItem("uid", this.props.auth.uid);
+    // localStorage.setItem("collection", this.props.auth.collection);
     //console.log(this.props.misc.boardname);
+    console.log(localStorage.getItem("bname"));
+    console.log(localStorage.getItem("uid"));
     this.setState({ uid: this.props.auth.uid }, () => {
-      console.log(this.state.uid);
-    });
-    //console.log(this.state.uid);
-    // db.listCollections("users")
-    //   .then((snapshot) => {
-    //     snapshot.forEach((snaps) => {
-    //       console.log(snaps["_queryOptions"].collectionId); // LIST OF ALL COLLECTIONS
-    //     });
-    //   })
-    //   .catch((error) => console.error(error));
-    await db
-      .collection("users")
-      .doc(this.props.auth.uid)
-      .collection(this.props.misc.boardname)
-      .doc("board_data")
-      .get()
-      .then((doc) => {
-        this.setState({
-          data: doc.data(),
-        });
-      })
-      .then(async () => {
-        const response = await this.getBoard();
-        this.setState({ boardData: response });
+      //console.log(localStorage.getItem("uid"));
+      this.setState({ collection: this.props.misc.boardname }, () => {
+        //console.log(localStorage.getItem("bname"));
+        db.collection("users")
+          .doc(localStorage.getItem("uid"))
+          .collection(localStorage.getItem("bname"))
+          .doc("board_data")
+          .get()
+          .then((doc) => {
+            this.setState({
+              data: doc.data(),
+            });
+          })
+          .then(async () => {
+            const response = await this.getBoard();
+            this.setState({ boardData: response });
+          });
       });
+    });
   }
+  //console.log(localStorage.getItem("uid"));
+  // db.listCollections("users")
+  //   .then((snapshot) => {
+  //     snapshot.forEach((snaps) => {
+  //       console.log(snaps["_queryOptions"].collectionId); // LIST OF ALL COLLECTIONS
+  //     });
+  //   })
+  //   .catch((error) => console.error(error));
   getBoard() {
     return new Promise((resolve) => {
       resolve(this.state.data);
@@ -89,8 +98,8 @@ class _Board extends Component {
       data: nextData,
     });
     db.collection("users")
-      .doc(this.props.auth.uid)
-      .collection(this.props.misc.boardname)
+      .doc(localStorage.getItem("uid"))
+      .collection(localStorage.getItem("bname"))
       .doc("board_data")
       .set(nextData);
   };
@@ -105,8 +114,8 @@ class _Board extends Component {
       data: this.state.data,
     });
     db.collection("users")
-      .doc(this.props.auth.uid)
-      .collection(this.props.misc.boardname)
+      .doc(localStorage.getItem("uid"))
+      .collection(localStorage.getItem("bname"))
       .doc("board_data")
       .set(this.state.data);
   };
@@ -121,8 +130,8 @@ class _Board extends Component {
       data: this.state.data,
     });
     db.collection("users")
-      .doc(this.props.auth.uid)
-      .collection(this.props.misc.boardname)
+      .doc(localStorage.getItem("uid"))
+      .collection(localStorage.getItem("bname"))
       .doc("board_data")
       .set(this.state.data);
   };
@@ -143,8 +152,8 @@ class _Board extends Component {
       data: this.state.data,
     });
     db.collection("users")
-      .doc(this.props.auth.uid)
-      .collection(this.props.misc.boardname)
+      .doc(localStorage.getItem("uid"))
+      .collection(localStorage.getItem("bname"))
       .doc("board_data")
       .set(this.state.data);
   };
@@ -219,6 +228,7 @@ class _Board extends Component {
     );
   }
 }
+
 const mapStateToProps = (state) => ({
   auth: state.auth,
   misc: state.misc,
