@@ -1,4 +1,5 @@
 import * as React from "react";
+import { Component } from 'react';
 import Backdrop from "@mui/material/Backdrop";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
@@ -10,6 +11,10 @@ import { Link } from "react-router-dom";
 import { useFirebase } from "react-redux-firebase";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
 
 const style = {
   position: "absolute",
@@ -27,6 +32,12 @@ export default function TransitionsModal() {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const [age, setAge] = React.useState('');
+
+  const handleChange = (event) => {
+    setAge(event.target.value);
+  };
+
   const firebase = useFirebase();
   const history = useHistory();
   const dispatch = useDispatch();
@@ -46,7 +57,9 @@ export default function TransitionsModal() {
     });
     history.push("/home");
   }
+  
   return (
+    
     <div>
       <div className="App-header">
         <h3>
@@ -62,12 +75,26 @@ export default function TransitionsModal() {
         </h3>
       </div>
       <h1 className="main-title home-page-title">Welcome</h1>
-      <Link to="/board">
-        <button className="primary-button">Go to Board</button>
-      </Link>
-      <button onClick={handleOpen} className="primary-button">
-        Create Board
-      </button>
+      <br></br><br></br><br></br><br></br>
+      <Box sx={{ minWidth: 120 }}>
+      <FormControl sx={{ minWidth: 150 }}>
+        <InputLabel id="demo-simple-select-label">Go to Board</InputLabel>
+        <Select
+          labelId="demo-simple-select-label"
+          id="demo-simple-select"
+          value={age}
+          label="Age"
+          onChange={handleChange}
+        >
+          <MenuItem value={10}>Ten</MenuItem>
+          <MenuItem value={20}>Twenty</MenuItem>
+          <MenuItem value={30}>Thirty</MenuItem>
+        </Select>
+      </FormControl>
+    </Box><br>
+    </br>
+    <Button onClick={handleOpen} id="demo-simple-select-label" variant="outlined">Create Board</Button>
+
 
       <Modal
         aria-labelledby="transition-modal-title"
